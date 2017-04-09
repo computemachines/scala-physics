@@ -4,11 +4,15 @@ lazy val commonSettings = Seq(
   scalaVersion := "2.10.6"
 )
 
-lazy val deform = (project in file("deform")).settings(
+lazy val rigid = (project in file("rigid")).settings(
+  commonSettings,
+  name := "scala-physics-rigid"
+)
+
+lazy val deform = (project in file("deform"))
+  .dependsOn(rigid).settings(
   commonSettings,
   name := "scala-physics-deform"
 )
 
-// lazy val rigid = (project in file("rigid"))
-
-lazy val root = (project in file(".")).aggregate(deform)
+lazy val root = (project in file(".")).aggregate(rigid, deform)
