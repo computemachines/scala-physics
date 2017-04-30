@@ -1,33 +1,17 @@
 package com.computemachines.geometry
 
+
+/** A triangulation of a 2d point set. */
+class Triangulation
+
+/** Factory for [[com.computemachines.geometry.Triangulation]] instances.
+  * Contains methods for constructing special triangulations from point
+  * sets.
+  */
 object Triangulation {
-  abstract class Face
-  /*
-   * (face, edgeindex)
-   *     = edgeindex refers to the index of the edge inside face.
-   */
-  type Edge = Tuple2[Face, Int]
 
-  /*
-   * vertices are indexed from 1 to 3 in counter clockwise order.
-   * edges are indexed by opposite vertex index
-   */
-  case class Triangle(
-    v1: Vertex2,
-    f1: Edge,
-    v2: Vertex2,
-    f2: Edge,
-    v3: Vertex2,
-    f3: Edge
-  ) extends Face
+  type Vertex = (Double, Double)
 
-  // for the purposes of the divide and conquer algorithm, represents
-  // a triangle with one vertex at infinity.
-  case class Segment(
-    v1: Vertex2,
-    v2: Vertex2,
-    f: Face
-  ) extends Face
-
-  def delaunay(vertices: Seq[Vertex2]): Face = ???
+  /** Returns Delaunay Triangulation of vertex set. */
+  def delaunay(vertices: Set[Vertex]) = ???
 }
