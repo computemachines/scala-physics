@@ -6,31 +6,33 @@ import org.scalatest.prop.PropertyChecks
 // import com.computemachines.geometry.VectorSpace._
 import com.computemachines.geometry.GeometricVector._
 
-class GeometricVectorSpec extends FlatSpec with PropertyChecks with Matchers{
+class GeometricVectorSpec extends FlatSpec
+    with PropertyChecks
+    with Matchers{
   "Addition of Vectors" should "be associative" in {
     forAll { (
       a: Tuple2[Int, Int],
       b: Tuple2[Int, Int],
       c: Tuple2[Int, Int]
-    ) => a + (b + c) === (a + b) + c
+    ) => a + (b + c) should === ((a + b) + c)
     }
     forAll { (
       a: Tuple2[Double, Double],
       b: Tuple2[Double, Double],
       c: Tuple2[Double, Double]
-    ) => a + (b + c) != (a + b) + c + (0.0, 0.1)
+    ) => a + (b + c) should === ((a + b) + c)
     }
   }
   it should "be commutative" in {
     forAll { (
       a: Tuple2[Int, Int],
       b: Tuple2[Int, Int]
-    ) => plus(a, b) === plus(b, a)
+    ) => plus(a, b) should === (plus(b, a))
     }
     forAll { (
       a: Tuple2[Double, Double],
       b: Tuple2[Double, Double]
-    ) => plus(a, b) === plus(b, a)
+    ) => plus(a, b) should === (plus(b, a))
     }
   }
   // it should "have inverse" in {
